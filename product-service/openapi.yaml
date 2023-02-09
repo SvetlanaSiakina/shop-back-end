@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    This is a sample Products Server based on the OpenAPI 3.0 specification.
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: https://3cact4d8bg.execute-api.us-east-1.amazonaws.com/dev/products
+tags:
+  - name: products
+    description: Everything about your products
+
+paths:
+  /products:
+    get:
+      tags:
+        - products
+      summary: List products
+      description: Show list of the all products.
+      operationId: products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+
+  /products/{productId}:
+    get:
+      tags:
+        - products
+      summary: Find product by ID
+      description: For valid response try string IDs with UUID format.
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          description: ID of product that needs to be fetched
+          required: true
+          schema:
+            type: string
+            example: 7567ec4b-b10c-48c5-9345-fc73c48a80aa
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Product not found
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          example: 7.6
+        title:
+          type: string
+      xml:
+        name: order
