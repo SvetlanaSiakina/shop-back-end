@@ -1,0 +1,70 @@
+{
+  "AWS_Shop_Products": [
+    {
+      "PutRequest": {
+        "Item": {
+          "description": {"S": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday"},
+          "id": {"S": "7567ec4b-b10c-48c5-9345-fc73c48a80aa"},
+          "image": {"S": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"},
+          "price": {"N": "109.95"},
+          "title": {"S": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "description": {"S": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing."},
+          "id": {"S": "7567ec4b-b10c-48c5-9345-fc73c48a80a0"},
+          "image": {"S": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"},
+          "price": {"N": "22.3"},
+          "title": {"S": "Mens Casual Premium Slim Fit T-Shirts "}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "description": {"S": "Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day."},
+          "id": {"S": "7567ec4b-b10c-48c5-9345-fc73c48a80a2"},
+          "image": {"S": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"},
+          "price": {"N": "23"},
+          "title": {"S": "Mens Cotton Jacket"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "description": {"S": "The color could be slightly different between on the screen and in practice."},
+          "id": {"S": "7567ec4b-b10c-48c5-9345-fc73c48a80a1"},
+          "image": {"S": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"},
+          "price": {"N":  "20.99"},
+          "title": {"S": "Mens Casual Slim Fit"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "description": {"S": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl."},
+          "id": {"S": "7567ec4b-b10c-48c5-9345-fc73c48a80a3"},
+          "image": {"S": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"},
+          "price": {"N": "23.15"},
+          "title": {"S": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "description": {"S": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center."},
+          "id": {"S": "7567ec4b-b10c-48c5-9345-fc73348a80a1"},
+          "image": {"S": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"},
+          "price": {"N": "153"},
+          "title": {"S": "Solid Gold Petite Micropave1"}
+        }
+      }
+    }
+  ]
+}

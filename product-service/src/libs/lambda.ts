@@ -8,9 +8,9 @@ enum HttpStatusCode {
 export const middyfy = (handler) => {
   return middy(handler).use(middyJsonBodyParser())
 }
-export const handleHttpError = () => {
+export const handleHttpError = (e:any) => {
   return {
     statusCode: HttpStatusCode.SERVER_ERROR,
-    body: 'Oops... something gone wrong'
+    body: `Oops... something gone wrong: ${e}`
   }
 }

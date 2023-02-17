@@ -1,5 +1,5 @@
 import type { AWS } from '@serverless/typescript';
-import { getProductById, getProductsList } from '@functions/index';
+import { getProductById, getProductsList, createProduct } from '@functions/index';
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
@@ -15,10 +15,19 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      TABLE_NAME_PRODUCTS: 'AWS_Shop_Products',
+      TABLE_NAME_PRODUCTS_STOCK: 'AWS_Shop_Products_Stock',
     },
+    iamRoleStatements: [
+      {
+        Effect: 'Allow',
+        Action: 'dynamodb:*',
+        Resource: ['*'],
+      }
+    ],
   },
   // import the function via paths
-  functions: { getProductsList, getProductById },
+  functions: { getProductsList, getProductById, createProduct },
   package: { individually: true },
   custom: {
     esbuild: {
