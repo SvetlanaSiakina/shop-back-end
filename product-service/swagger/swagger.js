@@ -27,7 +27,7 @@
       "post": {
         "summary": "createProduct",
         "description": "",
-        "operationId": "importProductsFile.post.products",
+        "operationId": "createProduct.post.products",
         "consumes": [
           "application/json"
         ],

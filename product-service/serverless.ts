@@ -1,5 +1,5 @@
 import type { AWS } from '@serverless/typescript';
-import { getProductById, getProductsList, createProduct } from '@functions/index';
+import { getProductById, getProductsList, createProduct, catalogBatchProcess } from '@functions/index';
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
@@ -17,17 +17,89 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       TABLE_NAME_PRODUCTS: 'AWS_Shop_Products',
       TABLE_NAME_PRODUCTS_STOCK: 'AWS_Shop_Products_Stock',
+      SQS_URL: {
+        Ref: 'SQSQueue'
+      },
+      SNS_ARN: {
+        Ref: "SNSTopic"
+      }
     },
     iamRoleStatements: [
       {
         Effect: 'Allow',
         Action: 'dynamodb:*',
         Resource: ['*'],
-      }
+      },
+      {
+        Effect: 'Allow',
+        Action: 'sns:*',
+        Resource: {
+          Ref: "SNSTopic"
+        },
+      },
+      {
+        Effect: 'Allow',
+        Action: 'sqs:*',
+        Resource: { "Fn::GetAtt": ['SQSQueue', 'Arn'] },
+      },
     ],
   },
+  resources: {
+    Resources: {
+      SQSQueue: {
+        Type: "AWS::SQS::Queue",
+        Properties: {
+          QueueName: "catalogItemsQueue"
+        }
+      },
+      SNSTopic: {
+        Type: "AWS::SNS::Topic",
+        Properties: {
+          TopicName: "createProductTopic"
+        }
+      },
+      SNSSubscriptionCountZero: {
+        Type: "AWS::SNS::Subscription",
+        Properties: {
+          Endpoint: "nikitinasd@gmail.com",
+          Protocol: "email",
+          TopicArn: {
+            Ref: "SNSTopic"
+          },
+          FilterPolicy: {
+            count: [{"numeric": ["=", 0]}],
+          }
+        }
+      },
+      SNSSubscriptionCountNonZero: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+          Endpoint: 'svetlana_siakina@epam.com',
+          Protocol: 'email',
+          TopicArn: {
+            Ref: 'SNSTopic',
+          },
+          FilterPolicy: {
+            count: [{"numeric": [">", 0]}],
+          },
+        }
+      }
+    },
+    Outputs: {
+      SQSQueueUrl: {
+        Value: {
+          Ref: 'SQSQueue'
+        }
+      },
+      SQSQueueArn: {
+        Value: {
+          "Fn::GetAtt": ["SQSQueue", "Arn"]
+        }
+      }
+    },
+  },
   // import the function via paths
-  functions: { getProductsList, getProductById, createProduct },
+  functions: { getProductsList, getProductById, createProduct, catalogBatchProcess },
   package: { individually: true },
   custom: {
     esbuild: {
