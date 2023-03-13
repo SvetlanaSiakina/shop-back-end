@@ -6,7 +6,7 @@ import {dynamoDB} from '@libs/ddbDocClient';
 import {PutCommand} from '@aws-sdk/lib-dynamodb';
 import {formatJSONResponse} from "@libs/api-gateway";
 
-const createProduct: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+export const createProduct: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
     const ProductsTableName = process.env.TABLE_NAME_PRODUCTS;
     const ProductsStockTableName = process.env.TABLE_NAME_PRODUCTS_STOCK;
     try {
